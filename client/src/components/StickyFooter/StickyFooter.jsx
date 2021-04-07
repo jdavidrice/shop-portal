@@ -33,17 +33,17 @@ const StickyFooter = () => {
       <Container component="main" className={classes.main} maxWidth="sm">
       </Container>
       <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Typography variant="body1">Admin Login</Typography>
-          <Typography variant="body1">Contact Us</Typography>
-          <Typography variant="body1">Follow Us</Typography>
-          <IconButton color='inherit'>
+        <Container maxWidth="sm" className="flexContainer">
+          <Typography variant="body1"className="flexItem">Admin Login</Typography>
+          <Typography variant="body1"className="flexItem">Contact Us</Typography>
+          <Typography variant="body1"className="flexItem">Follow Us</Typography>
+          <IconButton color='inherit'className="flexItem">
             <Instagram />
           </IconButton>
-          <IconButton color='inherit'>
+          <IconButton color='inherit'className="flexItem">
             <Twitter />
           </IconButton>
-          <IconButton color='inherit'>
+          <IconButton color='inherit'className="flexItem">
             <Facebook />
           </IconButton>
           <Copyright />

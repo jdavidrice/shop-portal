@@ -13,10 +13,17 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   footer: {
-    padding: theme.spacing(2, 2),
+    padding: theme.spacing(1, 1),
     marginTop: 'auto',
     backgroundColor: theme.palette.primary.main,
     textAlign: 'center',
+  },
+  flexContainer: {
+    display: 'flex',
+    flexFlow: 'column wrap',
+  },
+  flexItem: {
+    flex: '0 1 auto',
   },
 }));
 
