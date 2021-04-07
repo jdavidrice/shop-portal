@@ -4,7 +4,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
+    minHeight: '93.2vh',
+    color: 'white',
+    flexgrow: '1',
   },
   main: {
     marginTop: theme.spacing(8),
@@ -13,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(2, 2),
     marginTop: 'auto',
-    backgroundColor: theme.palette.grey[800],
+    backgroundColor: theme.palette.primary.main,
+    textAlign: 'center',
   },
 }));
 
