@@ -19,7 +19,8 @@
     "start:client": "npm start --prefix client",
     "start:dev:watch": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "node scripts/productSeed.js && node scripts/userSeed.js && node scripts/categorySeed.js && node scripts/brandSeed.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "if-env": "^1.0.4",
     "jest": "26.6.0",
     "mongoose": "^5.12.2",
+    "mongoose-slug-generator": "^1.0.4",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {

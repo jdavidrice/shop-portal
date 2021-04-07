@@ -1,4 +1,4 @@
-const db = require('../models/userModel');
+const db = require('../models/categoryModel');
 
 // Defining methods for the postsController
 module.exports = {
@@ -13,23 +13,8 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByEmail: function (req, res) {
-    db.findByOne({ email: req.params.email })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByUsername: function (req, res) {
-    db.findByOne( { username: req.params.username })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByLastname: function (req, res) {
-    db.findByOne({ lastname: req.params.lastName })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByPhoneNumber: function (req, res) {
-    db.findByOne({ phoneNumber: req.params.phoneNumber })
+  findByName: function (req, res) {
+    db.findByOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
