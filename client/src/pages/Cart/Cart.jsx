@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -42,7 +43,7 @@ const Cart = () => {
 
   // For Api call
   const getCart = () => {
-    const user = '607b2ccd2185a8437004490d'; // FOR TESTING
+    const user = '607dd3077201dc5008c7f8ae'; // FOR TESTING
     const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
@@ -147,7 +148,7 @@ const Cart = () => {
       await axios.post('/api/order', {
         cart: cart._id,
         user: '607b2ccd2185a8437004490d',
-        total: total
+        total: total,
       });
     } catch (err) {
       console.log(err);
@@ -251,15 +252,15 @@ const Cart = () => {
               </Typography>
             </CardContent>
             <CardActions>
-            <Link to='/Checkout'>
-              <Button
-                size='large'
-                color='primary'
-                variant='contained'
-                onClick={submitOrder}
-                fullWidth>
-                Checkout
-              </Button>
+              <Link to='/Checkout'>
+                <Button
+                  size='large'
+                  color='primary'
+                  variant='contained'
+                  onClick={submitOrder}
+                  fullWidth>
+                  Checkout
+                </Button>
               </Link>
             </CardActions>
           </Card>

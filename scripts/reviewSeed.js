@@ -11,24 +11,26 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
 
 const reviewSeed = [
   {
+    name: '607f011cc8066878588f6f6d',
     title: 'Great t-shirt!!',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 'My new hot t-shirt',
-    description:`I love this shirt and wear it a lot. It's super soft and fits great. The shirt has a ladies cut, which is flattering.`,
+    description: `I love this shirt and wear it a lot. It's super soft and fits great. The shirt has a ladies cut, which is flattering.`,
     totalStars: 5,
-    product:'607bceecb89db528c097cd23',
+    product: '607f0273f893c08dec10134f',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },
   {
+    name: '607f011cc8066878588f6f6c',
     title: 't-shirt too big',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 't-shirt too big',
-    description:`The shirt is not true to size. I ordered a size S but this is as big as a size XL.`,
+    description: `The shirt is not true to size. I ordered a size S but this is as big as a size XL.`,
     totalStars: 2,
-    product:'607bceecb89db528c097cd23',
+    product: '607f0273f893c08dec10134f',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },

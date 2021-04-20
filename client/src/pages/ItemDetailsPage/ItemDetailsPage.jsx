@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -24,8 +25,8 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '607dd307a8105c71a0c27959';
-const userId = '607dd3077201dc5008c7f8ae';
+const productID = '607f0273f893c08dec10134f';
+const userId = '607f011cc8066878588f6f6b';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
@@ -128,9 +129,11 @@ const ItemDetailsPage = () => {
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
-          <AverageRating
-            value={product.averageStars ? product.averageStars : 0}
-          />
+          <Box className={classes.box}>
+            <AverageRating
+              value={product.averageStars ? product.averageStars : 0}
+            />
+          </Box>
 
           <Box className={classes.box}>
             <Typography variant='h6'>${product.price}</Typography>
@@ -150,10 +153,7 @@ const ItemDetailsPage = () => {
             </Link>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal
-              userId={userId}
-              productId={product._id}
-            />
+            <ReviewModal userId={userId} productId={product._id} />
           </Box>
         </CardActions>
 
