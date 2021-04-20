@@ -24,8 +24,8 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '607bceecb89db528c097cd23';
-const userId = '607b2ccd2185a8437004490d';
+const productID = '607dd307a8105c71a0c27959';
+const userId = '607dd3077201dc5008c7f8ae';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
@@ -161,7 +161,7 @@ const ItemDetailsPage = () => {
         {review.map((item, i) => (
           <CardContent key={i}>
             <Typography>
-              {item.users[0].firstName} {item.users[0].lastName}
+              {item.user[0].firstName} {item.user[0].lastName}
             </Typography>
             <Typography>{formatDate(item.created)}</Typography>
             <UserRating rating={item.totalStars} />
