@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const path = require('path');
 
-//helmet
+//helmet turn of security policy
 server.use(
   helmet({
     contentSecurityPolicy: false,
