@@ -37,7 +37,6 @@ module.exports = {
   },
   remove: function (req, res) {
     let removeProduct = new db({ id: req.params.id });
-    // console.log(removeProduct);
     db.findById({_id: removeProduct.id})
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
@@ -84,7 +83,6 @@ module.exports = {
   //   db.findOneAndRemove(removeProduct)
   //     // .then((dbModel) => dbModel.remove())
   //     .then((dbModel) => {
-  //       console.log(res.json(dbModel)); // FOR TESTING
   //       res.json(dbModel);
   //     })
   //     .catch((err) => res.status(422).json(err));

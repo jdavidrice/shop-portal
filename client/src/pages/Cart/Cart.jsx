@@ -28,6 +28,10 @@ function GrowTransition(props) {
   return <Grow {...props} />;
 }
 
+// ***********To replace with local id until login page and global states done************
+const user = '607f092b7624a358d481c973';
+//************************************************************************************** */
+
 const Cart = () => {
   const classes = useStyles();
   // Setting components' initial state
@@ -43,7 +47,6 @@ const Cart = () => {
 
   // For Api call
   const getCart = () => {
-    const user = '607dd3077201dc5008c7f8ae'; // FOR TESTING
     const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
@@ -53,8 +56,6 @@ const Cart = () => {
         setList(res.data[0].products); // Push each product in an array
         newTotal = grandTotal(res.data[0].products);
         setTotal(newTotal);
-        console.log('cart', cart);
-        console.log('list', list);
       })
       .catch((error) => console.log(error));
   };
@@ -142,9 +143,6 @@ const Cart = () => {
 
   const submitOrder = async () => {
     try {
-      // const results = await axios.post('/api/order', {
-      //   list,
-      // });
       await axios.post('/api/order', {
         cart: cart._id,
         user: '607b2ccd2185a8437004490d',
@@ -252,7 +250,7 @@ const Cart = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Link to='/Checkout'>
+              <Link style={{ textDecoration: 'none' }} to='/Checkout'>
                 <Button
                   size='large'
                   color='primary'

@@ -91,6 +91,22 @@ const productSeed = [
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },
+  {
+    sku: 'sp-backpack-trek1',
+    slug: 'sp-backpack',
+    name: 'Blackberry backpack',
+    imageUrl: 'https://www.yeti.com/dw/image/v2/BBRN_PRD/on/demandware.static/-/Sites-masterCatalog_Yeti/default/dw296d07f0/images/pdp-Crossroads/795x600/795x600/200642-Bags-CLP-22L-Bkpk-PricklyPearPink-795x600.jpg?sw=720&sfrm=png',
+    imageKey: 'Red Backpack',
+    description:
+      'High-performance, durable Blackberry backpack. Capacity: 30 liters',
+    quantity: 10,
+    price: 199.99,
+    taxable: false,
+    isActive: true,
+    isFeatured: true,
+    created: new Date(Date.now()),
+    updated: new Date(Date.now()),
+  },
 ];
 
 db.Product.deleteMany({})

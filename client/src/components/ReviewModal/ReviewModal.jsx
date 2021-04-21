@@ -32,8 +32,6 @@ const ReviewModal = (props) => {
 
   // Post new review
   const PostReview = () => {
-    console.log(props.userId);
-    console.log(props.productId);
     setOpen(false);
     if (title !== '' || description !== '') {
       // Prevent empty reviews to be processed

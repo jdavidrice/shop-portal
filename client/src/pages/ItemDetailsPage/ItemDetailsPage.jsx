@@ -25,8 +25,8 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '607f0273f893c08dec10134f';
-const userId = '607f011cc8066878588f6f6b';
+const productID = '607f4342b230e5b53889f39c';
+const userId = '607f092b7624a358d481c973';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
@@ -44,8 +44,6 @@ const ItemDetailsPage = () => {
             if (productArray[i]._id === productID) {
               setProduct(productArray[i]);
               setReview(productArray[i].reviews);
-              // eslint-disable-next-line
-              console.log(productArray[i]);
             }
           }
         })
@@ -139,7 +137,7 @@ const ItemDetailsPage = () => {
             <Typography variant='h6'>${product.price}</Typography>
           </Box>
           <Box className={classes.box}>
-            <Link to='/Cart'>
+            <Link style={{ textDecoration: 'none' }} to='/Cart'>
               <Button
                 type='submit'
                 variant='contained'

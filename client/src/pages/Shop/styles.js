@@ -15,6 +15,10 @@ const useStyles = makeStyles(() => ({
     background: 'grey',
     marginBottom: '30px',
   },
+  image: {
+    minWidth: 300,
+    height: 400,
+  },
 }));
 
 export default useStyles;
