@@ -10,7 +10,7 @@ import {
   ShoppingCart as CartIcon,
   AccountCircle as AccountIcon,
 } from '@material-ui/icons';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import useStyles from './styles';
 
@@ -24,15 +24,22 @@ const Navigation = () => {
           <NavigationDrawer />
 
           <Typography variant='h4' className={classes.title}>
-            ShopPortal
+            <Link
+              style={{ textDecoration: 'none', color: 'inherit' }}
+              to='/shop'>
+              ShopPortal
+            </Link>
           </Typography>
-
-          <IconButton color='inherit'>
-            <AccountIcon />
-          </IconButton>
-          <IconButton color='inherit'>
-            <CartIcon />
-          </IconButton>
+          <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/login'>
+            <IconButton color='inherit'>
+              <AccountIcon />
+            </IconButton>
+          </Link>
+          <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Cart'>
+            <IconButton color='inherit'>
+              <CartIcon />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
