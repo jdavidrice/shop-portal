@@ -19,22 +19,8 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) {
-    let createReview = new db({
-      name: req.body.name,
-      product: req.body.product,
-      imageUrl: req.body.imageUrl,
-      imageKey: req.body.imageKey,
-      title: req.body.title,
-      description: req.body.description,
-      totalStars: req.body.totalStars,
-      reviewBody: req.body.reviewBody,
-      isActive: req.body.isActive,
-      isReviewable: req.body.isReviewable,
-      created: req.body.created,
-      updated: req.body.updated,
-    });
-    db.create(createReview)
+  create: function (req, res) {    
+    db.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

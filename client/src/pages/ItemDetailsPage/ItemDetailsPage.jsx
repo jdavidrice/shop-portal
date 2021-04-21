@@ -39,10 +39,11 @@ const ItemDetailsPage = () => {
         .get('/api/product/details')
         .then((res) => {
           const productArray = res.data;
+          console.log(res.data);
           for (let i = 0; i < productArray.length; i++) {
             if (productArray[i]._id === productID) {
               setProduct(productArray[i]);
-              setReview(productArray[i].reviews);
+              setReview(productArray[i].reviews); 
             }
           }
         })

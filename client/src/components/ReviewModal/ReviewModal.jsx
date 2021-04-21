@@ -54,7 +54,7 @@ const ReviewModal = (props) => {
     <div>
       <Box className={classes.box}>
         <Button
-          onClick={handleOpen}
+          onClick={() =>handleOpen}
           type='submit'
           variant='contained'
           color='primary'
@@ -67,7 +67,7 @@ const ReviewModal = (props) => {
         aria-describedby='transition-modal-description'
         className={classes.modal}
         open={open}
-        onClose={handleClose}
+        onClose={() =>handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
