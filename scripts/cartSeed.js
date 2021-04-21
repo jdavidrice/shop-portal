@@ -11,20 +11,41 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
 
 const cartSeed = [
   {
-    user: '607f092b7624a358d481c973',
+    user: '607f817121733017feb5ae69',
     status: 'Not processed',
-    products:[
-      {id:'608b11244d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 2 , totalPrice: 24},
-      {id:'608b11744d6de74ff8b9d44f', product:'607f0a715d981599c05cca7b', quantity: 3 , totalPrice: 30}
+    products: [
+      {
+        id: '608b11244d6de74ff8b9d44f',
+        product: '607f81a0c622c1182b611daf',
+        quantity: 2,
+        totalPrice: 24,
+      },
+      {
+        id: '608b11744d6de74ff8b9d44f',
+        product: '607f81a0c622c1182b611dae',
+        quantity: 3,
+        totalPrice: 30,
+      },
     ],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  },{
-    user: '607f092b7624a358d481c973',
+  },
+  {
+    user: '607f817121733017feb5ae69',
     status: 'Processing',
-    products:[
-      {id:'608b11544d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 10 , totalPrice: 120},
-      {id:'608b11644d6de74ff8b9d44f', product:'607f0a715d981599c05cca7b', quantity: 1 , totalPrice: 12}
+    products: [
+      {
+        id: '608b11544d6de74ff8b9d44f',
+        product: '607f81a0c622c1182b611daf',
+        quantity: 10,
+        totalPrice: 120,
+      },
+      {
+        id: '608b11644d6de74ff8b9d44f',
+        product: '607f81a0c622c1182b611dae',
+        quantity: 1,
+        totalPrice: 12,
+      },
     ],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
