@@ -30,12 +30,15 @@ const Navigation = () => {
               ShopPortal
             </Link>
           </Typography>
-          <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/login'>
+          <Link
+            style={{ textDecoration: 'none', color: 'inherit' }}
+            to='/login'>
             <IconButton color='inherit'>
               <AccountIcon />
             </IconButton>
           </Link>
-          <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Cart'>
+          <Link style={{ textDecoration: 'none', color: 'inherit' }}
+            to='/Cart'>
             <IconButton color='inherit'>
               <CartIcon />
             </IconButton>
