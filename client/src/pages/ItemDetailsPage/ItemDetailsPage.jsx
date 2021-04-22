@@ -21,7 +21,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
 import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
-// import ReviewBody from '../../components/ReviewBody/ReviewBody';
 import useStyles from './styles';
 
 // ***********To replace with local id************
@@ -157,16 +156,18 @@ const ItemDetailsPage = () => {
 
         <Divider variant='middle' />
         {review.map((item, i) => (
-          <CardContent key={i}>
-            <Typography>
-              {item.users[0].firstName} {item.users[0].lastName}
-            </Typography>
-            <Typography>{formatDate(item.created)}</Typography>
-            <UserRating rating={item.totalStars} />
-            <Typography>{item.title}</Typography>
-            <Typography paragraph>{item.description}</Typography>
+          <>
+            <CardContent key={i}>
+              <Typography>
+                {item.users[0].firstName} {item.users[0].lastName}
+              </Typography>
+              <Typography>{formatDate(item.created)}</Typography>
+              <UserRating rating={item.totalStars} />
+              <Typography>{item.title}</Typography>
+              <Typography paragraph>{item.description}</Typography>
+            </CardContent>
             <Divider variant='middle' />
-          </CardContent>
+          </>
         ))}
       </Card>
     </Container>

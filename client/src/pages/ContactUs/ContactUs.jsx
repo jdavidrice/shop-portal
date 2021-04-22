@@ -12,7 +12,7 @@ const ContactUs = () => {
     <Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
         <Typography component='h1' variant='h5'>
-          Contact Us!
+          Contact Us
         </Typography>
         <form className={classes.form} noValidate>
           <TextField

@@ -7,9 +7,11 @@ import {
   CardActions,
   CardMedia,
   Container,
+  Divider,
   Grid,
   Typography,
 } from '@material-ui/core/';
+import StickyFooter from '../../components/StickyFooter/StickyFooter';
 import useStyles from './styles';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -182,47 +184,61 @@ const Cart = () => {
                     {item.product.description}
                   </Typography>
                   <br />
-                  <FormControl
-                    variant='outlined'
-                    className={classes.formControl}>
-                    <InputLabel id='demo-simple-select-outlined-label'>
-                      Quantity
-                    </InputLabel>
-                    <NativeSelect
-                      name={item.id}
-                      defaultValue={item.quantity}
-                      onChange={(e) => {
-                        handleChange(item._id, e);
-                      }}>
-                      {/* Stock quantity is called quantity in the product model */}
-                      {getOptionsArray(item.product.quantity).map((num) => (
-                        <option key={num} value={num}>
-                          {' '}
-                          {num}
-                        </option>
-                      ))}
-                    </NativeSelect>
-                  </FormControl>
-                  <IconButton
-                    aria-label='delete'
-                    onClick={() => {
-                      handleRemove(item._id, GrowTransition);
-                      console.log('remove', item._id); // FOR TESTING
-                    }}>
-                    <DeleteForeverIcon />
-                  </IconButton>
-                  <Snackbar
-                    open={state.open}
-                    autoHideDuration={3000}
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    onClose={handleClose}
-                    TransitionComponent={state.Transition}
-                    message='Item removed from your cart'
-                    key={state.Transition.name}
-                  />
-                  <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {item.totalPrice}
-                  </Typography>
+
+                  <StickyFooter />
+                    <div className={classes.box}>
+                      <FormControl
+                        variant='outlined'
+                        className={classes.formControl}>
+                        <InputLabel id='demo-simple-select-outlined-label'>
+                          Quantity
+                        </InputLabel>
+                        <NativeSelect
+                          name={item.id}
+                          defaultValue={item.quantity}
+                          onChange={(e) => {
+                            handleChange(item._id, e);
+                          }}>
+                          {/* Stock quantity is called quantity in the product model */}
+                          {getOptionsArray(item.product.quantity).map((num) => (
+                            <option key={num} value={num}>
+                              {' '}
+                              {num}
+                            </option>
+                          ))}
+                        </NativeSelect>
+                      </FormControl>
+                    </div>
+                    <div className={classes.box}>
+                      <IconButton
+                        aria-label='delete'
+                        onClick={() => {
+                          handleRemove(item._id, GrowTransition);
+                          console.log('remove', item._id); // FOR TESTING
+                        }}>
+                        <DeleteForeverIcon />
+                      </IconButton>
+                    </div>
+                    <div className={classes.box}>
+                      <Snackbar
+                        open={state.open}
+                        autoHideDuration={3000}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                        onClose={handleClose}
+                        TransitionComponent={state.Transition}
+                        message='Item removed from your cart'
+                        key={state.Transition.name}
+                      />
+                    </div>
+                    <div className={classes.box}>
+                      <Typography
+                        color='textSecondary'
+                        align='right'
+                        variant='h6'>
+                        <AttachMoneyIcon /> {item.totalPrice}
+                      </Typography>
+                    </div>
+                  
                 </CardContent>
               </div>
             </Card>
@@ -237,6 +253,7 @@ const Cart = () => {
                 gutterBottom>
                 Order Summary
               </Typography>
+              <Divider variant='middle' />
               <Typography variant='h6' component='p'>
                 Subtotal: ${''}
                 {total}
@@ -244,7 +261,7 @@ const Cart = () => {
               <Typography variant='h6' component='p'>
                 Shipping: $0
               </Typography>
-              <Typography variant='h4' component='p'>
+              <Typography variant='h5' component='p'>
                 Total: ${''}
                 {total}
               </Typography>
