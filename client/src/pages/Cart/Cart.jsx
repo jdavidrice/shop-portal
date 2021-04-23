@@ -1,17 +1,20 @@
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Box,
   Card,
   CardContent,
   CardActions,
   CardMedia,
   Container,
+  CssBaseline,
   Divider,
   Grid,
   Typography,
 } from '@material-ui/core/';
-import StickyFooter from '../../components/StickyFooter/StickyFooter';
+// import StickyFooter from '../../components/StickyFooter/StickyFooter';
 import useStyles from './styles';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -19,7 +22,6 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
@@ -166,7 +168,8 @@ const Cart = () => {
 
   return (
     <Container>
-      <Grid container spacing={2}>
+      <CssBaseline />
+      <Grid container spacing={4}>
         <Grid item sm={8}>
           {list.map((item, i) => (
             <Card className={classes.root} key={i}>
@@ -177,73 +180,84 @@ const Cart = () => {
               />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
-                  <Typography component='h4' variant='h4'>
+                  <Typography component='h4' variant='h5'>
                     {item.product.name}
                   </Typography>
+                  <br />
                   <Typography variant='subtitle1' color='textSecondary'>
                     {item.product.description}
                   </Typography>
-                  <br />
 
-                  <StickyFooter />
-                    <div className={classes.box}>
-                      <FormControl
-                        variant='outlined'
-                        className={classes.formControl}>
-                        <InputLabel id='demo-simple-select-outlined-label'>
-                          Quantity
-                        </InputLabel>
-                        <NativeSelect
-                          name={item.id}
-                          defaultValue={item.quantity}
-                          onChange={(e) => {
-                            handleChange(item._id, e);
+                  {/* Card Footer */}
+                  <footer className={classes.footer}>
+                    <CardActions disableSpacing={true}>
+                      <Box className={classes.box}>
+                        <FormControl
+                          variant='outlined'
+                          className={classes.formControl}>
+                          <InputLabel id='demo-simple-select-outlined-label'>
+                            Quantity
+                          </InputLabel>
+                          <NativeSelect
+                            name={item.id}
+                            defaultValue={item.quantity}
+                            onChange={(e) => {
+                              handleChange(item._id, e);
+                            }}>
+                            {getOptionsArray(item.product.quantity).map(
+                              (num) => (
+                                <option key={num} value={num}>
+                                  {' '}
+                                  {num}
+                                </option>
+                              )
+                            )}
+                          </NativeSelect>
+                        </FormControl>
+                      </Box>
+                      <Box className={classes.box}>
+                        <IconButton
+                          aria-label='delete'
+                          onClick={() => {
+                            handleRemove(item._id, GrowTransition);
+                            console.log('remove', item._id); // FOR TESTING
                           }}>
-                          {/* Stock quantity is called quantity in the product model */}
-                          {getOptionsArray(item.product.quantity).map((num) => (
-                            <option key={num} value={num}>
-                              {' '}
-                              {num}
-                            </option>
-                          ))}
-                        </NativeSelect>
-                      </FormControl>
-                    </div>
-                    <div className={classes.box}>
-                      <IconButton
-                        aria-label='delete'
-                        onClick={() => {
-                          handleRemove(item._id, GrowTransition);
-                          console.log('remove', item._id); // FOR TESTING
-                        }}>
-                        <DeleteForeverIcon />
-                      </IconButton>
-                    </div>
-                    <div className={classes.box}>
-                      <Snackbar
-                        open={state.open}
-                        autoHideDuration={3000}
-                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                        onClose={handleClose}
-                        TransitionComponent={state.Transition}
-                        message='Item removed from your cart'
-                        key={state.Transition.name}
-                      />
-                    </div>
-                    <div className={classes.box}>
-                      <Typography
-                        color='textSecondary'
-                        align='right'
-                        variant='h6'>
-                        <AttachMoneyIcon /> {item.totalPrice}
-                      </Typography>
-                    </div>
-                  
+                          <DeleteForeverIcon />
+                        </IconButton>
+                      </Box>
+                      <Box className={classes.box}>
+                        <Snackbar
+                          open={state.open}
+                          autoHideDuration={3000}
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                          }}
+                          onClose={handleClose}
+                          TransitionComponent={state.Transition}
+                          message='Item removed from your cart'
+                          key={state.Transition.name}
+                        />
+                      </Box>
+                      <Box className={classes.box}>
+                        <Typography
+                          color='textSecondary'
+                          align='right'
+                          variant='h6'>
+                          ${item.totalPrice}
+                        </Typography>
+                      </Box>
+                    </CardActions>
+                  </footer>
+
+                  {/* <StickyFooter /> */}
                 </CardContent>
               </div>
             </Card>
           ))}
         </Grid>
+
+        {/* Order Summary Mini Card */}
         <Grid item sm={4}>
           <Card className={classes.checkout}>
             <CardContent>
@@ -281,6 +295,7 @@ const Cart = () => {
           </Card>
         </Grid>
       </Grid>
+      {/* End of Order Summary */}
     </Container>
   );
 };
