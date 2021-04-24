@@ -30,21 +30,20 @@ const ItemDetailsPage = () => {
   const classes = useStyles();
 
   const [product, setProduct] = useState([]);
-// const [reviews, setReview] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const getProduct = async () => {
+    await axios
+      .get(`/api/reviews/product/${productID}`)
+      .then((res) => {
+        setProduct(res.data[0]);
+        setLoading(false);
+      })
+      // eslint-disable-next-line
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
-    const getProduct = () => {
-      axios
-        .get(`/api/reviews/product/${productID}`)
-        .then((res) => {
-          const productArray = res.data;
-          console.log(res.data);                   
-              setProduct(productArray);
-            //  setReview(productArray[0].reviews);          
-        })
-        // eslint-disable-next-line
-        .catch((err) => console.log(err));
-    };
     getProduct();
   }, []);
 
@@ -88,10 +87,13 @@ const ItemDetailsPage = () => {
       .catch((error) => console.log(error));
   };
 
+  if (isLoading) {
+    return <Container className={classes.root}> Loading...</Container>;
+  }
+
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>
-      {product.map((item, i) => (
-      <Card className={classes.card} key={i}>
+      <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label='recipe' className={classes.avatar}>
@@ -108,27 +110,27 @@ const ItemDetailsPage = () => {
               </IconButton>
             </>
           }
-          title={item.name[0]}
+          title={product.name[0]}
           subheader='Exactly What You Are Looking For!'
         />
         <CardMedia
           className={classes.media}
-          image={item.imageUrl[0]}
-          title={item.imageKey[0]}
+          image={product.imageUrl[0]}
+          title={product.imageKey[0]}
         />
         <CardContent>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {item.description[0]}
+            {product.description[0]}
           </Typography>
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
           <AverageRating
-            value={item.averageStars ? item.averageStars : 0}
+            value={product.averageStars ? product.averageStars : 0}
           />
 
           <Box className={classes.box}>
-            <Typography variant='h6'>${item.price[0]}</Typography>
+            <Typography variant='h6'>${product.price[0]}</Typography>
           </Box>
           <Box className={classes.box}>
             <Link style={{ textDecoration: 'none' }} to='/Cart'>
@@ -138,19 +140,22 @@ const ItemDetailsPage = () => {
                 color='primary'
                 className={classes.submit}
                 onClick={() => {
-                  addProduct(item.price[0]);
+                  addProduct(product.price[0]);
                 }}>
                 Add to Cart
               </Button>
             </Link>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal userId={userId} productId={item._id[0]} />
+            <ReviewModal
+              userId='607f092b7624a358d481c973'
+              productId='607f4342b230e5b53889f39c'
+            />
           </Box>
         </CardActions>
 
         <Divider variant='middle' />
-        {item.reviews.map((review, j) => (
+        {product.reviews.map((review, j) => (
           <CardContent key={j}>
             <Typography>
               {review.firstName[0]} {review.lastName[0]}
@@ -163,7 +168,6 @@ const ItemDetailsPage = () => {
           </CardContent>
         ))}
       </Card>
-      ))}
     </Container>
   );
 };
