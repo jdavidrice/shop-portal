@@ -9,8 +9,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
-    marginTop: 'auto',
-    height: 'auto',
+    marginTop: theme.spacing(15),
   },
   checkout: {
     marginTop: theme.spacing(2),
@@ -19,9 +18,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 28,
     textAlign: 'center',
   },
+  deleteBtn: {
+    paddingBottom: 0,
+  },
   details: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  inputLabel: {
+    fontSize: 12,
   },
   CardActions: {
     display: 'flex',
@@ -34,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flex: '1 0 auto',
+    flexDirection: 'column',
   },
   image: {
     minWidth: 300,
@@ -41,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  totalPrice: {
+    // paddingTop: 'auto',
+    paddingBottom: 0,
   },
   nativeSelect: {
     flexDirection: 'column',

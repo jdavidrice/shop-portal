@@ -180,24 +180,30 @@ const Cart = () => {
               />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
-                  <Typography component='h4' variant='h5'>
+                  <Typography
+                    className={classes.box}
+                    component='h4'
+                    variant='h5'>
                     {item.product.name}
                   </Typography>
                   <br />
-                  <Typography variant='subtitle1' color='textSecondary'>
+                  <Typography
+                    className={classes.box}
+                    variant='subtitle1'
+                    color='textSecondary'>
                     {item.product.description}
                   </Typography>
 
                   {/* Card Footer */}
                   <footer className={classes.footer}>
-                    <CardActions disableSpacing={true}>
+                    <CardActions disableSpacing={true} className={classes.box}>
                       <Box className={classes.box}>
+                        <InputLabel className={classes.inputLabel} id='demo-simple-select-outlined-label'>
+                          Quantity
+                        </InputLabel>
                         <FormControl
                           variant='outlined'
                           className={classes.formControl}>
-                          <InputLabel id='demo-simple-select-outlined-label'>
-                            Quantity
-                          </InputLabel>
                           <NativeSelect
                             name={item.id}
                             defaultValue={item.quantity}
@@ -217,6 +223,7 @@ const Cart = () => {
                       </Box>
                       <Box className={classes.box}>
                         <IconButton
+                          className={classes.deleteBtn}
                           aria-label='delete'
                           onClick={() => {
                             handleRemove(item._id, GrowTransition);
@@ -241,6 +248,7 @@ const Cart = () => {
                       </Box>
                       <Box className={classes.box}>
                         <Typography
+                          className={classes.totalPrice}
                           color='textSecondary'
                           align='right'
                           variant='h6'>
@@ -250,7 +258,6 @@ const Cart = () => {
                     </CardActions>
                   </footer>
 
-                  {/* <StickyFooter /> */}
                 </CardContent>
               </div>
             </Card>
