@@ -20,6 +20,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
 import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
+import Loading from '../../components/Loading/Loading';
 import useStyles from './styles';
 
 // ***********To replace with local id************
@@ -88,7 +89,7 @@ const ItemDetailsPage = () => {
   };
 
   if (isLoading) {
-    return <Container className={classes.root}> Loading...</Container>;
+    return <Loading> Loading...</Loading>;
   }
 
   return (
