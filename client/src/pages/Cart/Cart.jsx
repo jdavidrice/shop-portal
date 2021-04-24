@@ -178,8 +178,8 @@ const Cart = () => {
                 image={item.product.imageUrl}
                 title={item.product.imageKey}
               />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
+              {/* <div className={classes.details}> */}
+                <CardContent className={classes.content, classes.details, classes.flexContainer}>
                   <Typography
                     className={classes.box}
                     component='h4'
@@ -195,10 +195,14 @@ const Cart = () => {
                   </Typography>
 
                   {/* Card Footer */}
-                  <footer className={classes.footer}>
-                    <CardActions disableSpacing={true} className={classes.box}>
+                  <footer className={classes.footer, classes.box}>
+                    <CardActions
+                      disableSpacing={true}
+                      className={classes.flexContainer, classes.box}>
                       <Box className={classes.box}>
-                        <InputLabel className={classes.inputLabel} id='demo-simple-select-outlined-label'>
+                        <InputLabel
+                          className={classes.inputLabel}
+                          id='demo-simple-select-outlined-label'>
                           Quantity
                         </InputLabel>
                         <FormControl
@@ -257,9 +261,8 @@ const Cart = () => {
                       </Box>
                     </CardActions>
                   </footer>
-
                 </CardContent>
-              </div>
+              {/* </div> */}
             </Card>
           ))}
         </Grid>

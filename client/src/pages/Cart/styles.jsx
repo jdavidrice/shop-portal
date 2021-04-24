@@ -8,15 +8,15 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(15),
+    marginTop: theme.spacing(12),
+    // flexShrink: 0,
   },
   checkout: {
     marginTop: theme.spacing(2),
   },
   title: {
     fontSize: 28,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   deleteBtn: {
     paddingBottom: 0,
@@ -29,18 +29,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 12,
   },
   CardActions: {
-    display: 'flex',
-    placeItems: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    marginBottom: 0,
+    margin: 0,
   },
-  content: {
-    flex: '1 0 auto',
-    flexDirection: 'column',
-  },
+  // content: {
+  //   flex: '1 0 auto',
+  //   flexDirection: 'column',
+  // },
   image: {
     minWidth: 300,
     height: 400,
@@ -55,25 +49,24 @@ const useStyles = makeStyles((theme) => ({
   nativeSelect: {
     flexDirection: 'column',
   },
-  // flexContainer: {
-  //   display: 'flex',
-  //   placeItems: 'center',
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   padding: theme.spacing(3, 2),
-  //   marginTop: 'auto',
-  //   marginBottom: 0,
-  // },
+  flexContainer: {
+    display: 'flex',
+    placeItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: theme.spacing(3, 2),
+    // marginTop: 'auto',
+    // marginBottom: 0,
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
   },
   box: {
-    // margin: theme.spacing(1),
-    // minWidth: 120,
     flexGrow: 1,
     flexShrink: 1,
-    textAlign: 'center',
+    margin: 0,
+    // textAlign: 'center',
   },
 }));
 
