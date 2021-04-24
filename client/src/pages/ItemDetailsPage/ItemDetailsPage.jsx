@@ -155,8 +155,8 @@ const ItemDetailsPage = () => {
         </CardActions>
 
         <Divider variant='middle' />
-        {product.reviews.map((review, j) => (
-          <CardContent key={j}>
+        {product.reviews.map((review, i) => (
+          <CardContent key={i}>
             <Typography>
               {review.firstName[0]} {review.lastName[0]}
             </Typography>
