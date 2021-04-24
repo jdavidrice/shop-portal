@@ -20,7 +20,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
 import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
-// import ReviewBody from '../../components/ReviewBody/ReviewBody';
 import useStyles from './styles';
 
 // ***********To replace with local id************
@@ -31,21 +30,17 @@ const ItemDetailsPage = () => {
   const classes = useStyles();
 
   const [product, setProduct] = useState([]);
-  const [review, setReview] = useState([]);
+// const [reviews, setReview] = useState([]);
 
   useEffect(() => {
     const getProduct = () => {
       axios
-        .get('/api/product/details')
+        .get(`/api/reviews/product/${productID}`)
         .then((res) => {
           const productArray = res.data;
-          console.log(res.data);
-          for (let i = 0; i < productArray.length; i++) {
-            if (productArray[i]._id === productID) {
-              setProduct(productArray[i]);
-              setReview(productArray[i].reviews); 
-            }
-          }
+          console.log(res.data);                   
+              setProduct(productArray);
+            //  setReview(productArray[0].reviews);          
         })
         // eslint-disable-next-line
         .catch((err) => console.log(err));
@@ -95,7 +90,8 @@ const ItemDetailsPage = () => {
 
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>
-      <Card className={classes.card}>
+      {product.map((item, i) => (
+      <Card className={classes.card} key={i}>
         <CardHeader
           avatar={
             <Avatar aria-label='recipe' className={classes.avatar}>
@@ -112,27 +108,27 @@ const ItemDetailsPage = () => {
               </IconButton>
             </>
           }
-          title={product.name}
+          title={item.name[0]}
           subheader='Exactly What You Are Looking For!'
         />
         <CardMedia
           className={classes.media}
-          image={product.imageUrl}
-          title={product.imageKey}
+          image={item.imageUrl[0]}
+          title={item.imageKey[0]}
         />
         <CardContent>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {product.description}
+            {item.description[0]}
           </Typography>
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
           <AverageRating
-            value={product.averageStars ? product.averageStars : 0}
+            value={item.averageStars ? item.averageStars : 0}
           />
 
           <Box className={classes.box}>
-            <Typography variant='h6'>${product.price}</Typography>
+            <Typography variant='h6'>${item.price[0]}</Typography>
           </Box>
           <Box className={classes.box}>
             <Link style={{ textDecoration: 'none' }} to='/Cart'>
@@ -142,31 +138,32 @@ const ItemDetailsPage = () => {
                 color='primary'
                 className={classes.submit}
                 onClick={() => {
-                  addProduct(product.price);
+                  addProduct(item.price[0]);
                 }}>
                 Add to Cart
               </Button>
             </Link>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal userId={userId} productId={product._id} />
+            <ReviewModal userId={userId} productId={item._id[0]} />
           </Box>
         </CardActions>
 
         <Divider variant='middle' />
-        {review.map((item, i) => (
-          <CardContent key={i}>
+        {item.reviews.map((review, j) => (
+          <CardContent key={j}>
             <Typography>
-              {item.users[0].firstName} {item.users[0].lastName}
+              {review.firstName[0]} {review.lastName[0]}
             </Typography>
-            <Typography>{formatDate(item.created)}</Typography>
-            <UserRating rating={item.totalStars} />
-            <Typography>{item.title}</Typography>
-            <Typography paragraph>{item.description}</Typography>
+            <Typography>{formatDate(review.created)}</Typography>
+            <UserRating rating={review.rating} />
+            <Typography>{review.title}</Typography>
+            <Typography paragraph>{review.description}</Typography>
             <Divider variant='middle' />
           </CardContent>
         ))}
       </Card>
+      ))}
     </Container>
   );
 };

@@ -34,10 +34,10 @@ const ReviewModal = (props) => {
     setOpen(false);
     if (title !== '' || description !== '') {  // Prevent empty reviews to be processed
       const review = {
-        name: props.userId,
+        user: props.userId,
         product: props.productId,
         title: title,
-        totalStars: rating,
+        rating: rating,
         description: description,
       };
       axios
