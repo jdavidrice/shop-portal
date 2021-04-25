@@ -14,8 +14,8 @@ const cartSeed = [
     user: '607f092b7624a358d481c973',
     status: 'Not processed',
     products:[
-      {id:'608b11244d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 2 , totalPrice: 24},
-      {id:'608b11744d6de74ff8b9d44f', product:'607f0a715d981599c05cca7b', quantity: 3 , totalPrice: 30}
+      {_id:'608b11244d6de74ff8b9d44c', product:'607f0a715d981599c05cca7a', quantity: 2 , totalPrice: 24},
+      {_id:'608b11744d6de74ff8b9d44d', product:'607f0a715d981599c05cca7b', quantity: 3 , totalPrice: 30}
     ],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
@@ -23,8 +23,8 @@ const cartSeed = [
     user: '607f092b7624a358d481c973',
     status: 'Processing',
     products:[
-      {id:'608b11544d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 10 , totalPrice: 120},
-      {id:'608b11644d6de74ff8b9d44f', product:'607f0a715d981599c05cca7b', quantity: 1 , totalPrice: 12}
+      {_id:'608b11544d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 10 , totalPrice: 120},
+      {_id:'608b11644d6de74ff8b9d44f', product:'607f0a715d981599c05cca7b', quantity: 1 , totalPrice: 12}
     ],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
