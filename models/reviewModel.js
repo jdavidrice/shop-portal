@@ -1,10 +1,9 @@
-//isReviewed Schema
 const Mongoose = require('mongoose');
 const { Schema } = Mongoose;
 
-// isReviewed Schema
-const isReviewableSchema = new Schema({
-  name: {
+// Review Schema
+const ReviewSchema = new Schema({
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -22,7 +21,7 @@ const isReviewableSchema = new Schema({
     type: String,
     trim: true,
   },
-  totalStars: {
+  rating: {
     type: Number,
   },
   description: {
@@ -45,4 +44,4 @@ const isReviewableSchema = new Schema({
     type: Date,
   },
 });
-module.exports = Mongoose.model('Review', isReviewableSchema);
+module.exports = Mongoose.model('Review', ReviewSchema);
