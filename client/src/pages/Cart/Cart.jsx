@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -25,7 +26,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
-import axios from 'axios';
+
+import Loading from '../../components/Loading/Loading';
 
 //For Toast
 function GrowTransition(props) {
@@ -39,9 +41,9 @@ const user = '607f817121733017feb5ae69';
 const Cart = () => {
   const classes = useStyles();
   // Setting components' initial state
-  const [list, setList] = useState([]);
   const [cart, setCart] = useState({});
   const [total, setTotal] = useState(0);
+  const [isLoading, setLoading] = useState(true);
 
   // For Toast
   const [state, setState] = useState({
@@ -50,14 +52,14 @@ const Cart = () => {
   });
 
   // For Api call
-  const getCart = () => {
+  const getCart = async () => {
     const status = 'Not processed';
-    axios
+    await axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
         let newTotal = 0;
         setCart(res.data[0]);
-        setList(res.data[0].products); // Push each product in an array
+        setLoading(false);
         newTotal = grandTotal(res.data[0].products);
         setTotal(newTotal);
       })
@@ -71,19 +73,14 @@ const Cart = () => {
 
   // Update quantity
   function handleChange(id, event) {
-    const newList = list.slice(0);
     let newCart = cart;
-    let productIndex = list.findIndex((item) => item._id === id);
-    let unitPrice = newList[productIndex].product.price; // Price by unit
+    let productIndex = newCart.products.findIndex((item) => item._id === id);
+    let unitPrice = newCart.products[productIndex].product.price; // Price by unit
     let totalUnits = Number(event.target.value); // New number of item
     let newTotal = (Math.round(totalUnits * unitPrice * 100) / 100).toFixed(2); // Calculation with rounding up to 2 decimals
-    // Populate arrays with new numbers
-    newList[productIndex].quantity = totalUnits;
-    newList[productIndex].totalPrice = newTotal;
     newCart.products[productIndex].quantity = totalUnits;
     newCart.products[productIndex].totalPrice = newTotal;
-    // Update Cart and List states
-    setList(newList);
+    // Update Cart state
     setCart(newCart);
     //Calling function to update db
     updateCart(newCart, cart._id);
@@ -91,7 +88,6 @@ const Cart = () => {
 
   // Api call to update the cart after new quantity
   function updateCart(cart, cartId) {
-    console.log('in update', cart);
     axios
       .put(`/api/cart/${cartId}`, cart)
       .then(() => {
@@ -100,33 +96,19 @@ const Cart = () => {
       .catch((error) => console.log(error));
   }
 
-  //// function removeProduct(cartId, id) {
-  //   console.log("in update", cart)
-  //   axios
-  //     .delete(`/api/cart/${cartId}`, id)
-  //     .then(() => {
-  //      getCart();
-  //     })
-  //     .catch((error) => console.log(error));
-  // }
-
   // Remove item from cart for update api
-  function handleRemove(id, Transition) {
-    let newList = list.filter((item) => item._id !== id);
-    let newCart = cart.products.filter((item) => item._id !== id);
-    // Update Cart and List states
-    setList(newList);
-    setCart(newCart);
-    console.log('in remove', cart);
-    console.log(newList);
-    // Update db cart collection
-    updateCart(newCart, cart._id);
-    // Update Toast State
+  const handleRemove = async (cartId, productId, Transition) => {
+    await axios
+      .put(`/api/cart/product/${cartId}`, { id: productId })
+      .then(() => {
+        getCart();
+      })
+      .catch((error) => console.log(error));
     setState({
       open: true,
       Transition,
     });
-  }
+  };
 
   // For Toast closing
   const handleClose = () => {
@@ -146,15 +128,11 @@ const Cart = () => {
   }
 
   const submitOrder = async () => {
-    try {
-      await axios.post('/api/order', {
-        cart: cart._id,
-        user: '607b2ccd2185a8437004490d',
-        total: total,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await axios.post('/api/order', {
+      cart: cart._id,
+      user: user,
+      total: total,
+    });
   };
 
   // Populate dropdowns
@@ -166,12 +144,17 @@ const Cart = () => {
     return array;
   };
 
+  if (isLoading) {
+    return <Loading> Loading...</Loading>;
+  }
+
   return (
     <Container>
       <CssBaseline />
       <Grid container spacing={4}>
         <Grid item sm={8}>
-          {list.map((item, i) => (
+           {/* Need to add a if(cart.products) exist to prevent crash when cart emptied */}
+          {cart.products.map((item, i) => (
             <Card className={classes.root} key={i}>
               <CardMedia
                 className={classes.image}
@@ -187,11 +170,46 @@ const Cart = () => {
                     {item.product.name}
                   </Typography>
                   <br />
-                  <Typography
-                    className={classes.box}
-                    variant='subtitle1'
-                    color='textSecondary'>
-                    {item.product.description}
+                  <FormControl
+                    variant='outlined'
+                    className={classes.formControl}>
+                    <InputLabel id='demo-simple-select-outlined-label'>
+                      Quantity
+                    </InputLabel>
+                    <NativeSelect
+                      name={item.id}
+                      defaultValue={item.quantity}
+                      onChange={(e) => {
+                        handleChange(item._id, e);
+                      }}>                     
+                      {getOptionsArray(item.product.storeQuantity).map(
+                        (num) => (
+                          <option key={num} value={num}>
+                            {' '}
+                            {num}
+                          </option>
+                        )
+                      )}
+                    </NativeSelect>
+                  </FormControl>
+                  <IconButton
+                    aria-label='delete'
+                    onClick={() => {
+                      handleRemove(cart._id, item._id, GrowTransition);
+                    }}>
+                    <DeleteForeverIcon />
+                  </IconButton>
+                  <Snackbar
+                    open={state.open}
+                    autoHideDuration={3000}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    onClose={handleClose}
+                    TransitionComponent={state.Transition}
+                    message='Item removed from your cart'
+                    key={state.Transition.name}
+                  />
+                  <Typography color='textSecondary' align='right' variant='h6'>
+                    <AttachMoneyIcon /> {item.totalPrice}
                   </Typography>
 
                   {/* Card Footer */}

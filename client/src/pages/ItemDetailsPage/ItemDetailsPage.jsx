@@ -97,7 +97,7 @@ const ItemDetailsPage = () => {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label='recipe' className={classes.avatar}>
+            <Avatar aria-label='shopportal logo' className={classes.avatar}>
               SP
             </Avatar>
           }
