@@ -17,7 +17,7 @@ import {
 //import { isConstructorDeclaration } from 'typescript';
 
 // ***********To replace with local id until login page and global states done************
-const userId = '607f817121733017feb5ae69';
+const userId = '6085fb1abc96065f786cf66b';
 //************************************************************************************** */
 
 const Shop = () => {
@@ -92,7 +92,7 @@ const Shop = () => {
               let price = '$' + product.price; // Add dollar sign to displayed price
               return (
                 <div key={i} className={classes.myMasonryGridColumnDiv}>
-                  <Card className={classes.masonryCard}>
+                  <Card>
                     <CardHeader title={product.name} subheader={price} />
                     <CardMedia
                       className={classes.image}
