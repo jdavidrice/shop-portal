@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -16,7 +17,7 @@ import {
 //import { isConstructorDeclaration } from 'typescript';
 
 // ***********To replace with local id until login page and global states done************
-const userId = '607f817121733017feb5ae69';
+const userId = '6085fb1abc96065f786cf66b';
 //************************************************************************************** */
 
 const Shop = () => {
