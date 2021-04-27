@@ -30,7 +30,7 @@ function GrowTransition(props) {
 }
 
 // ***********To replace with local id until login page and global states done************
-const user = '607f817121733017feb5ae69';
+const userId = '607f817121733017feb5ae69';
 //************************************************************************************** */
 
 const Cart = () => {
@@ -50,7 +50,7 @@ const Cart = () => {
   const getCart = async () => {
     const status = 'Not processed';
     await axios
-      .get(`/api/cart/${user}/${status}`)
+      .get(`/api/cart/user/${userId}/${status}`)
       .then((res) => {
         let newTotal = 0;
         setCart(res.data[0]);
@@ -92,9 +92,9 @@ const Cart = () => {
   }
 
   // Remove item from cart for update api
-  const handleRemove = async (cartId, productId, Transition) => {
+  const handleRemove = async (cartId, itemId, Transition) => {
     await axios
-      .put(`/api/cart/product/${cartId}`, { id: productId })
+      .put(`/api/cart/product/${cartId}`, { id: itemId })
       .then(() => {
         getCart();
       })
@@ -125,7 +125,7 @@ const Cart = () => {
   const submitOrder = async () => {
     await axios.post('/api/order', {
       cart: cart._id,
-      user: user,
+      user: userId,
       total: total,
     });
   };
@@ -147,68 +147,77 @@ const Cart = () => {
     <Container>
       <Grid container spacing={2}>
         <Grid item sm={8}>
-           {/* Need to add a if(cart.products) exist to prevent crash when cart emptied */}
-          {cart.products.map((item, i) => (
-            <Card className={classes.root} key={i}>
-              <CardMedia
-                className={classes.image}
-                image={item.product.imageUrl}
-                title={item.product.imageKey}
-              />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component='h4' variant='h4'>
-                    {item.product.name}
-                  </Typography>
-                  <Typography variant='subtitle1' color='textSecondary'>
-                    {item.product.description}
-                  </Typography>
-                  <br />
-                  <FormControl
-                    variant='outlined'
-                    className={classes.formControl}>
-                    <InputLabel id='demo-simple-select-outlined-label'>
-                      Quantity
-                    </InputLabel>
-                    <NativeSelect
-                      name={item.id}
-                      defaultValue={item.quantity}
-                      onChange={(e) => {
-                        handleChange(item._id, e);
-                      }}>                     
-                      {getOptionsArray(item.product.storeQuantity).map(
-                        (num) => (
-                          <option key={num} value={num}>
-                            {' '}
-                            {num}
-                          </option>
-                        )
-                      )}
-                    </NativeSelect>
-                  </FormControl>
-                  <IconButton
-                    aria-label='delete'
-                    onClick={() => {
-                      handleRemove(cart._id, item._id, GrowTransition);
-                    }}>
-                    <DeleteForeverIcon />
-                  </IconButton>
-                  <Snackbar
-                    open={state.open}
-                    autoHideDuration={3000}
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    onClose={handleClose}
-                    TransitionComponent={state.Transition}
-                    message='Item removed from your cart'
-                    key={state.Transition.name}
-                  />
-                  <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {item.totalPrice}
-                  </Typography>
-                </CardContent>
-              </div>
-            </Card>
-          ))}
+          {cart.products
+            ? cart.products.map((item, i) => {
+                return (
+                  <Card className={classes.root} key={i}>
+                    <CardMedia
+                      className={classes.image}
+                      image={item.product.imageUrl}
+                      title={item.product.imageKey}
+                    />
+                    <div className={classes.details}>
+                      <CardContent className={classes.content}>
+                        <Typography component='h4' variant='h4'>
+                          {item.product.name}
+                        </Typography>
+                        <Typography variant='subtitle1' color='textSecondary'>
+                          {item.product.description}
+                        </Typography>
+                        <br />
+                        <FormControl
+                          variant='outlined'
+                          className={classes.formControl}>
+                          <InputLabel id='demo-simple-select-outlined-label'>
+                            Quantity
+                          </InputLabel>
+                          <NativeSelect
+                            name={item.id}
+                            defaultValue={item.quantity}
+                            onChange={(e) => {
+                              handleChange(item._id, e);
+                            }}>
+                            {getOptionsArray(item.product.storeQuantity).map(
+                              (num) => (
+                                <option key={num} value={num}>
+                                  {' '}
+                                  {num}
+                                </option>
+                              )
+                            )}
+                          </NativeSelect>
+                        </FormControl>
+                        <IconButton
+                          aria-label='delete'
+                          onClick={() => {
+                            handleRemove(cart._id, item._id, GrowTransition);
+                          }}>
+                          <DeleteForeverIcon />
+                        </IconButton>
+                        <Snackbar
+                          open={state.open}
+                          autoHideDuration={3000}
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                          }}
+                          onClose={handleClose}
+                          TransitionComponent={state.Transition}
+                          message='Item removed from your cart'
+                          key={state.Transition.name}
+                        />
+                        <Typography
+                          color='textSecondary'
+                          align='right'
+                          variant='h6'>
+                          <AttachMoneyIcon /> {item.totalPrice}
+                        </Typography>
+                      </CardContent>
+                    </div>
+                  </Card>
+                );
+              })
+            : null}
         </Grid>
         <Grid item sm={4}>
           <Card className={classes.checkout}>

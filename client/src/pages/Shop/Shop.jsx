@@ -58,7 +58,7 @@ const Shop = () => {
       ],
     };
     axios
-      .get(`/api/cart/${userId}/${status}`)
+      .get(`/api/cart/user/${userId}/${status}`)
       .then((res) => {
         if (res.data[0]) {
           const cartId = res.data[0]._id;

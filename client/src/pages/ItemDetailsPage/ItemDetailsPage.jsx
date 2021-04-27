@@ -24,7 +24,7 @@ import Loading from '../../components/Loading/Loading';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '607f81a0c622c1182b611dad';
+const productId = '607f4342b230e5b53889f39c';
 const userId = '607f817121733017feb5ae69';
 //********************************************* */
 const ItemDetailsPage = () => {
@@ -35,7 +35,7 @@ const ItemDetailsPage = () => {
 
   const getProduct = async () => {
     await axios
-      .get(`/api/reviews/product/${productID}`)
+      .get(`/api/reviews/product/${productId}`)
       .then((res) => {
         setProduct(res.data[0]);
         setLoading(false);
@@ -60,21 +60,21 @@ const ItemDetailsPage = () => {
       user: userId,
       products: [
         {
-          product: productID,
+          product: productId,
           quantity: 1,
           totalPrice: totalPrice,
         },
       ],
     };
     axios
-      .get(`/api/cart/${userId}/${status}`)
+      .get(`/api/cart/user/${userId}/${status}`)
       .then((res) => {
         if (res.data[0]) {
           const cartId = res.data[0]._id;
           const cart = res.data[0];
           // FUTURE : Check if product already in the cart
           cart.products.push({
-            product: productID,
+            product: productId,
             quantity: 1,
             totalPrice: totalPrice,
           });
@@ -149,8 +149,8 @@ const ItemDetailsPage = () => {
           </Box>
           <Box className={classes.box}>
             <ReviewModal
-              userId='607f092b7624a358d481c973'
-              productId='607f4342b230e5b53889f39c'
+              userId={userId}
+              productId={productId}
             />
           </Box>
         </CardActions>
