@@ -104,7 +104,7 @@ const NavigationDrawer = () => {
         ))}
       </List>
       <Divider />
-      <Typography varient='p' align='center'>
+      <Typography component='p' align='center'>
         &copy; 2021, ShopPortal Group
       </Typography>
     </div>

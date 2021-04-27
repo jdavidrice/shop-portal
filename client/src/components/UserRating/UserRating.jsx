@@ -8,9 +8,8 @@ const UserRating = (props) => {
 
   return (
     <div>
-        <Typography>User Rating</Typography>
-        <Rating name="rating-user" value={value} readOnly />
-      
+      <Typography component='p'>User Rating</Typography>
+      <Rating name='rating-user' value={value} readOnly />
     </div>
   );
 }
