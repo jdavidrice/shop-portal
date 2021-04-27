@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test /src/tests",
     "eject": "react-scripts eject",
     "format": "prettier src/**/*.{js,jsx,ts.tsx,html} --write",
