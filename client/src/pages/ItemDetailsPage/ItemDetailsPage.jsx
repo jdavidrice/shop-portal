@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -21,6 +20,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
 import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
+import Loading from '../../components/Loading/Loading';
 import useStyles from './styles';
 
 // ***********To replace with local id************
@@ -45,21 +45,6 @@ const ItemDetailsPage = () => {
   };
 
   useEffect(() => {
-    const getProduct = () => {
-      axios
-        .get('/api/product/details')
-        .then((res) => {
-          const productArray = res.data;
-          for (let i = 0; i < productArray.length; i++) {
-            if (productArray[i]._id === productID) {
-              setProduct(productArray[i]);
-              setReview(productArray[i].reviews);
-            }
-          }
-        })
-        // eslint-disable-next-line
-        .catch((err) => console.log(err));
-    };
     getProduct();
   }, []);
 
@@ -103,12 +88,16 @@ const ItemDetailsPage = () => {
       .catch((error) => console.log(error));
   };
 
+  if (isLoading) {
+    return <Loading> Loading...</Loading>;
+  }
+
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label='logo' className={classes.avatar}>
+            <Avatar aria-label='recipe' className={classes.avatar}>
               SP
             </Avatar>
           }
@@ -122,29 +111,27 @@ const ItemDetailsPage = () => {
               </IconButton>
             </>
           }
-          title={product.name}
+          title={product.name[0]}
           subheader='Exactly What You Are Looking For!'
         />
         <CardMedia
           className={classes.media}
-          image={product.imageUrl}
-          title={product.imageKey}
+          image={product.imageUrl[0]}
+          title={product.imageKey[0]}
         />
         <CardContent>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {product.description}
+            {product.description[0]}
           </Typography>
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
-          <Box className={classes.box}>
-            <AverageRating
-              value={product.averageStars ? product.averageStars : 0}
-            />
-          </Box>
+          <AverageRating
+            value={product.averageStars ? product.averageStars : 0}
+          />
 
           <Box className={classes.box}>
-            <Typography variant='h6'>${product.price}</Typography>
+            <Typography variant='h6'>${product.price[0]}</Typography>
           </Box>
           <Box className={classes.box}>
             <Link style={{ textDecoration: 'none' }} to='/Cart'>
@@ -154,7 +141,7 @@ const ItemDetailsPage = () => {
                 color='primary'
                 className={classes.submit}
                 onClick={() => {
-                  addProduct(product.price);
+                  addProduct(product.price[0]);
                 }}>
                 Add to Cart
               </Button>
@@ -169,19 +156,17 @@ const ItemDetailsPage = () => {
         </CardActions>
 
         <Divider variant='middle' />
-        {review.map((item, i) => (
-          <>
-            <CardContent key={i}>
-              <Typography>
-                {item.users[0].firstName} {item.users[0].lastName}
-              </Typography>
-              <Typography>{formatDate(item.created)}</Typography>
-              <UserRating rating={item.totalStars} />
-              <Typography>{item.title}</Typography>
-              <Typography paragraph>{item.description}</Typography>
-            </CardContent>
+        {product.reviews.map((review, i) => (
+          <CardContent key={i}>
+            <Typography>
+              {review.firstName[0]} {review.lastName[0]}
+            </Typography>
+            <Typography>{formatDate(review.created)}</Typography>
+            <UserRating rating={review.rating} />
+            <Typography>{review.title}</Typography>
+            <Typography paragraph>{review.description}</Typography>
             <Divider variant='middle' />
-          </>
+          </CardContent>
         ))}
       </Card>
     </Container>
