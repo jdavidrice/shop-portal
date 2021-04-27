@@ -24,8 +24,8 @@ import Loading from '../../components/Loading/Loading';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '607f4342b230e5b53889f39c';
-const userId = '607f092b7624a358d481c973';
+const productID = '607f81a0c622c1182b611dad';
+const userId = '607f817121733017feb5ae69';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();

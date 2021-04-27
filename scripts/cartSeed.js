@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
 
 const cartSeed = [
   {
-    user: '607f092b7624a358d481c973',
+    user: '607f817121733017feb5ae69',
     status: 'Not processed',
     products:[
       {_id:'608b11244d6de74ff8b9d44c', product:'607f0a715d981599c05cca7a', quantity: 2 , totalPrice: 24},
@@ -19,8 +19,9 @@ const cartSeed = [
     ],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  },{
-    user: '607f092b7624a358d481c973',
+  },
+  {
+    user: '607f817121733017feb5ae69',
     status: 'Processing',
     products:[
       {_id:'608b11544d6de74ff8b9d44f', product:'607f0a715d981599c05cca7a', quantity: 10 , totalPrice: 120},
