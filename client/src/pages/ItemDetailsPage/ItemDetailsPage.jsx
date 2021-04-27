@@ -24,8 +24,8 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '6085f7d45fea377094323a91';
-const userId = '6085fb1abc96065f786cf66b';
+const productID = '607f0273f893c08dec10134f';
+const userId = '607f011cc8066878588f6f6b';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
@@ -97,7 +97,7 @@ const ItemDetailsPage = () => {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label='logo' className={classes.avatar}>
+            <Avatar aria-label='recipe' className={classes.avatar}>
               SP
             </Avatar>
           }
