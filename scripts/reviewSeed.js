@@ -15,24 +15,24 @@ const reviewSeed = [
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 'My new hot t-shirt',
-    description: `I love this shirt and wear it a lot. It's super soft and fits great. The shirt has a ladies cut, which is flattering.`,
-    totalStars: 5,
-    product: '607f81a0c622c1182b611dad',
+    description:`I love this shirt and wear it a lot. It's super soft and fits great. The shirt has a ladies cut, which is flattering.`,
+    rating: 5,
+    product:'607f0a715d981599c05cca79',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-    name: '607f817121733017feb5ae67',
+    user: '607f092b7624a358d481c971'
   },
   {
     title: 't-shirt too big',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 't-shirt too big',
-    description: `The shirt is not true to size. I ordered a size S but this is as big as a size XL.`,
-    totalStars: 2,
-    product: '607f81a0c622c1182b611dad',
+    description:`The shirt is not true to size. I ordered a size S but this is as big as a size XL.`,
+    rating: 2,
+    product:'607f0a715d981599c05cca79',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-    name: '607f817121733017feb5ae68',
+    user:'607f092b7624a358d481c972'
   },
 ];
 
