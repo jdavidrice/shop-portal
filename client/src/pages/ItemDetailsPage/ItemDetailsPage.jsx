@@ -24,14 +24,25 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '60876a2e5e7f897ddc2541d7';
-const userId = '60876ccdd9813b4eb0f5be24';
+const productId = '607f4342b230e5b53889f39c';
+const userId = '607f817121733017feb5ae69';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
 
   const [product, setProduct] = useState([]);
-  const [review, setReview] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const getProduct = async () => {
+    await axios
+      .get(`/api/reviews/product/${productId}`)
+      .then((res) => {
+        setProduct(res.data[0]);
+        setLoading(false);
+      })
+      // eslint-disable-next-line
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     const getProduct = () => {
@@ -64,21 +75,21 @@ const ItemDetailsPage = () => {
       user: userId,
       products: [
         {
-          product: productID,
+          product: productId,
           quantity: 1,
           totalPrice: totalPrice,
         },
       ],
     };
     axios
-      .get(`/api/cart/${userId}/${status}`)
+      .get(`/api/cart/user/${userId}/${status}`)
       .then((res) => {
         if (res.data[0]) {
           const cartId = res.data[0]._id;
           const cart = res.data[0];
           // FUTURE : Check if product already in the cart
           cart.products.push({
-            product: productID,
+            product: productId,
             quantity: 1,
             totalPrice: totalPrice,
           });
@@ -150,7 +161,10 @@ const ItemDetailsPage = () => {
             </Link>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal userId={userId} productId={product._id} />
+            <ReviewModal
+              userId={userId}
+              productId={productId}
+            />
           </Box>
         </CardActions>
 

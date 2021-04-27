@@ -17,7 +17,7 @@ router
 
 // Matches with user id and status
 router
-  .route('/:user/:status')
+  .route('/user/:user/:status')
   .get(cartController.findByUserandStatus)  // used in shop and itemDetailsPage
   .put(cartController.update)
   .delete(cartController.remove);

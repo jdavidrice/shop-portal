@@ -26,9 +26,9 @@ module.exports = {
     const options = {
       new: true,
     };
-    await db
+   await db
       .findByIdAndUpdate(filter, pull, options)
-      .then(res.sendStatus(201).json({ message: 'Product removed' }))
+      .then(res.status(201).json({ message: 'Product removed' }))
       .catch((err) => res.status(422).json(err));
   },
 
