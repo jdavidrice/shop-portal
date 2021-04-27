@@ -24,8 +24,8 @@ import ReviewModal from '../../components/ReviewModal/ReviewModal';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productID = '6085f7d45fea377094323a91';
-const userId = '6085fb1abc96065f786cf66b';
+const productID = '60876a2e5e7f897ddc2541d7';
+const userId = '60876ccdd9813b4eb0f5be24';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
