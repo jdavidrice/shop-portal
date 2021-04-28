@@ -9,7 +9,7 @@ const contactRoutes = require('./contact');
 const merchantRoutes = require('./merchant');
 const orderRoutes = require('./order');
 const paymentRoutes = require('./payment');
-const reviews = require('./isReviewed');
+const reviews = require('./review');
 
 // Post Routes
 router.use('/user', userRoutes);

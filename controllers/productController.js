@@ -4,89 +4,24 @@ const db = require('../models/productModel');
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
-      .populate('isReviewed brand')
+      .populate('brand')
       .sort({ created: -1 })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findAllWithRating: function (req, res) {
-    db.aggregate([
-      {
-        $lookup: {
-          from: 'reviews',
-          localField: 'isReviewed',
-          foreignField: '_id',
-          as: 'reviews',
-        },
-      },     
-      {
-        $unwind: {
-          path: '$reviews',
-          preserveNullAndEmptyArrays: true,
-        },        
-      },
-      {
-        $lookup: {
-          from: 'users',
-          localField: 'reviews.name',
-          foreignField: '_id',
-          as: 'reviews.users',
-        },
-      },
-      {
-        $group: {
-          _id: '$_id',
-          averageStars: {
-            $avg: '$reviews.totalStars',
-          },
-          sku: { $first: '$sku' },
-          slug: { $first: '$slug' },
-          name: { $first: '$name' },
-          imageUrl: { $first: '$imageUrl' },
-          imageKey: { $first: '$imageKey' },
-          description: { $first: '$description' },
-          price: { $first: '$price' },
-          brand: { $first: '$brand' },
-          isActive: { $first: '$isActive' },
-          reviews: {
-            $push: '$reviews'
-          },
-        },
-      },
-      {
-        $project: {
-          _id: 1,
-          averageStars: 1,
-          sku: 1,
-          slug: 1,
-          name: 1,
-          imageUrl: 1,
-          imageKey: 1,
-          description: 1,
-          price:1,
-          brand:1,
-          isActive: 1,
-          reviews: {
-             $filter: { input: "$reviews", as: "a", cond: { $ifNull: ["$$a._id", false] } },
-           } 
-        }
-      },
-    ])
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
     db.findById(req.params.id)
+      .populate('brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    db.findOne({ sku: req.parmas.sku })
+    db.findOne({ sku: req.params.sku })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findOne({ name: req.parmas.name })
+    db.findOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

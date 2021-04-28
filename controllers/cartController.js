@@ -1,4 +1,5 @@
 const db = require('../models/cartModel');
+const ObjectId = require('mongodb').ObjectID;
 
 // Defining methods for the cartController
 
@@ -15,29 +16,42 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  removeAProduct: async function (req, res) {
+    let filter = req.params.id;
+    let pull = {
+      $pull: {
+        products: { _id: ObjectId(req.body.id)},
+      },
+    };
+    const options = {
+      new: true,
+    };
+   await db
+      .findByIdAndUpdate(filter, pull, options)
+      .then(res.status(201).json({ message: 'Product removed' }))
+      .catch((err) => res.status(422).json(err));
+  },
+
   findByUserandStatus: function (req, res) {
-    let findUserStatus = new db({
-      user: req.params.user,
-      status: req.params.status,
-    });
-    db.find({ user: findUserStatus.user, status: findUserStatus.status })
+    db.find({ user: req.params.user, status: req.params.status })
       .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) {    
+
+  create: function (req, res) {
     db.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
     db.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then((dbModel) => res.json(dbModel))
+      .then(res.status(201).json({ message: 'Product updated' }))
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
     let removeProduct = new db({ id: req.params.id });
-    db.findById({_id: removeProduct.id})
+    db.findById({ _id: removeProduct.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -58,33 +72,9 @@ module.exports = {
   //     .catch((err) => res.status(422).json(err));
   // },
   // findByStatus: function (req, res) {
-  //   let findStatus = new db({
-  //     status: req.params.status,
-  //   });
-  //   db.findOne(findStatus)
+  //   db.findOne(req.params.status)
   //     .populate('products.product products.product.brand')
   //     .then((dbModel) => res.json(dbModel))
-  //     .catch((err) => res.status(422).json(err));
-  // },
-  // updateAProduct: function (req, res) {
-  //   let updateProduct = new db(
-  //     { _id: req.params.id, 'products._id': req.params.product },
-  //     req.body
-  //   );
-  //   db.findOneAndUpdate(updateProduct)
-  //     .then((dbModel) => res.json(dbModel))
-  //     .catch((err) => res.status(422).json(err));
-  // },
-  // removeAProduct: function (req, res) {
-  //   let removeProduct = new db({
-  //     _id: req.params.id,
-  //     'products._id': req.params.product,
-  //   });
-  //   db.findOneAndRemove(removeProduct)
-  //     // .then((dbModel) => dbModel.remove())
-  //     .then((dbModel) => {
-  //       res.json(dbModel);
-  //     })
   //     .catch((err) => res.status(422).json(err));
   // },
   //  *****END OF UNUSED*****
