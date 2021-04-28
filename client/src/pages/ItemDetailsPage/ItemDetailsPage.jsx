@@ -25,8 +25,8 @@ import Loading from '../../components/Loading/Loading';
 import useStyles from './styles';
 
 // ***********To replace with local id************
-const productId = '607f4342b230e5b53889f39c';
-const userId = '607f817121733017feb5ae69';
+const productId = '6088a42bb0d2365ff0f084e2';
+const userId = '6088a259be35fe10acbd4c65';
 //********************************************* */
 const ItemDetailsPage = () => {
   const classes = useStyles();
@@ -151,10 +151,7 @@ const ItemDetailsPage = () => {
             </Link>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal
-              userId={userId}
-              productId={productId}
-            />
+            <ReviewModal userId={userId} productId={productId} />
           </Box>
         </CardActions>
 

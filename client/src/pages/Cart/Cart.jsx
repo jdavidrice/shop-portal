@@ -31,7 +31,7 @@ function GrowTransition(props) {
 }
 
 // ***********To replace with local id until login page and global states done************
-const userId = '607f817121733017feb5ae69';
+const userId = '6088a259be35fe10acbd4c65';
 //************************************************************************************** */
 
 const Cart = () => {
@@ -141,8 +141,17 @@ const Cart = () => {
   };
 
   if (isLoading) {
-    return <Loading> Loading...</Loading>;
+    return <Loading> Loading...</Loading>; 
   }
+
+  if (!cart) {
+    return (
+      <Container>
+        No cart yet. Please go to the shop page and add items there
+      </Container>
+    );
+  }
+
 
   return (
     <Container>
