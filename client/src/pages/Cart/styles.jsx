@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     // textAlign: 'center',
   },
   deleteBtn: {
-    paddingBottom: 0,
+    // paddingBottom: 0,
   },
   details: {
     display: 'flex',

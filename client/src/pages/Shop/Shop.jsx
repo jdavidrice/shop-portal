@@ -14,6 +14,7 @@ import {
   Button,
   Card,
 } from '@material-ui/core';
+import Loading from '../../components/Loading/Loading';
 //import { isConstructorDeclaration } from 'typescript';
 
 // ***********To replace with local id until login page and global states done************
@@ -29,6 +30,7 @@ const Shop = () => {
     500: 1,
   };
   const [productsList, setProductsList] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   // Get products from the store
   const getProduct = () => {
@@ -36,6 +38,7 @@ const Shop = () => {
       .get('/api/product')
       .then((res) => {
         setProductsList(res.data);
+        setLoading(false);
       })
       // eslint-disable-next-line
       .catch((err) => console.log(err));
@@ -80,6 +83,10 @@ const Shop = () => {
       })
       .catch((error) => console.log(error));
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>

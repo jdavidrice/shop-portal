@@ -90,7 +90,7 @@ const ItemDetailsPage = () => {
   };
 
   if (isLoading) {
-    return <Loading> Loading...</Loading>;
+    return <Loading />;
   }
 
   return (
