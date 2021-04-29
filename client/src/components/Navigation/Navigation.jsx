@@ -19,7 +19,7 @@ const Navigation = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='relative'>
+      <AppBar position='fixed'>
         <Toolbar ariaLabel='navigation' title='Navigation'>
           <NavigationDrawer />
 
