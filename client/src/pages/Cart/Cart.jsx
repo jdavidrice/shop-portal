@@ -1,15 +1,21 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
+  Box,
   Card,
   CardContent,
   CardActions,
   CardMedia,
   Container,
+  CssBaseline,
+  Divider,
   Grid,
   Typography,
 } from '@material-ui/core/';
+// import StickyFooter from '../../components/StickyFooter/StickyFooter';
 import useStyles from './styles';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -17,7 +23,6 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
@@ -154,7 +159,8 @@ const Cart = () => {
 
   return (
     <Container>
-      <Grid container spacing={2}>
+      <CssBaseline />
+      <Grid container spacing={4}>
         <Grid item sm={8}>
           {cart.products
             ? cart.products.map((item, i) => {
@@ -219,7 +225,7 @@ const Cart = () => {
                           color='textSecondary'
                           align='right'
                           variant='h6'>
-                          <AttachMoneyIcon /> {item.totalPrice}
+                          ${item.totalPrice}
                         </Typography>
                       </CardContent>
                     </div>
@@ -228,6 +234,8 @@ const Cart = () => {
               })
             : null}
         </Grid>
+
+        {/* Order Summary Mini Card */}
         <Grid item sm={4}>
           <Card className={classes.checkout}>
             <CardContent>
@@ -237,6 +245,7 @@ const Cart = () => {
                 gutterBottom>
                 Order Summary
               </Typography>
+              <Divider variant='middle' />
               <Typography variant='h6' component='p'>
                 Subtotal: ${''}
                 {total}
@@ -244,7 +253,7 @@ const Cart = () => {
               <Typography variant='h6' component='p'>
                 Shipping: $0
               </Typography>
-              <Typography variant='h4' component='p'>
+              <Typography variant='h5' component='p'>
                 Total: ${''}
                 {total}
               </Typography>
@@ -264,6 +273,7 @@ const Cart = () => {
           </Card>
         </Grid>
       </Grid>
+      {/* End of Order Summary */}
     </Container>
   );
 };

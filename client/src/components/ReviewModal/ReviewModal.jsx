@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import axios from 'axios';
 import {
@@ -32,7 +33,8 @@ const ReviewModal = (props) => {
   // Post new review
   const PostReview = () => {
     setOpen(false);
-    if (title !== '' || description !== '') {  // Prevent empty reviews to be processed
+    if (title !== '' || description !== '') {
+      // Prevent empty reviews to be processed
       const review = {
         user: props.userId,
         product: props.productId,
@@ -47,7 +49,8 @@ const ReviewModal = (props) => {
           setTitle('');
           setDescription('');
         })
-        .catch((error) => console.log(error)); }
+        .catch((error) => console.log(error));
+    }
   };
 
   return (

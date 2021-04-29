@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardActions,
   CardContent,
+  Container,
   Typography,
   Button,
   Card,
@@ -80,57 +81,61 @@ const Shop = () => {
   };
 
   return (
-    <Masonry
-      breakpointCols={breakPoints}
-      className={classes.myMasonryGrid}
-      columnClassName={classes.myMasonryGridColumn}>
-      {productsList
-        ? productsList.map((product, i) => {
-            let price = '$' + product.price; // Add dollar sign to displayed price
-            return (
-              <div key={i} className={classes.myMasonryGridColumnDiv}>
-                <Card>
-                  <CardHeader title={product.name} subheader={price} />
-                  <CardMedia
-                    className={classes.image}
-                    image={product.imageUrl}
-                  />
-                  <CardContent>
-                    <Typography variant='body2' component='p'>
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Link style={{ textDecoration: 'none' }} to='/Cart'>
-                      <Button
-                        size='small'
-                        variant='contained'
-                        color='primary'
-                        onClick={() => {
-                          addProduct(product._id, product.price);
-                        }}>
-                        ADD TO CART
-                      </Button>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} to='/itemDetails'>
-                      <Button
-                        size='small'
-                        variant='contained'
-                        color='primary'
-                        onClick={() => {
-                          // Temp fix until login page and global state
-                          console.log(product._id);
-                        }}>
-                        DETAILS
-                      </Button>
-                    </Link>
-                  </CardActions>
-                </Card>
-              </div>
-            );
-          })
-        : null}
-    </Masonry>
+    <Container className={classes.root} component='main' maxWidth='xs'>
+      <Masonry
+        breakpointCols={breakPoints}
+        className={classes.myMasonryGrid}
+        columnClassName={classes.myMasonryGridColumn}>
+        {productsList
+          ? productsList.map((product, i) => {
+              let price = '$' + product.price; // Add dollar sign to displayed price
+              return (
+                <div key={i} className={classes.myMasonryGridColumnDiv}>
+                  <Card>
+                    <CardHeader title={product.name} subheader={price} />
+                    <CardMedia
+                      className={classes.image}
+                      image={product.imageUrl}
+                    />
+                    <CardContent>
+                      <Typography variant='body2' component='p'>
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Link style={{ textDecoration: 'none' }} to='/Cart'>
+                        <Button
+                          size='small'
+                          variant='contained'
+                          color='primary'
+                          onClick={() => {
+                            addProduct(product._id, product.price);
+                          }}>
+                          ADD TO CART
+                        </Button>
+                      </Link>
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        to='/itemDetails'>
+                        <Button
+                          size='small'
+                          variant='contained'
+                          color='primary'
+                          onClick={() => {
+                            // Temp fix until login page and global state
+                            console.log(product._id);
+                          }}>
+                          DETAILS
+                        </Button>
+                      </Link>
+                    </CardActions>
+                  </Card>
+                </div>
+              );
+            })
+          : null}
+      </Masonry>
+    </Container>
   );
 };
 

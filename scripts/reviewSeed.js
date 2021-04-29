@@ -11,6 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
 
 const reviewSeed = [
   {
+    name: '607f011cc8066878588f6f6d',
     title: 'Great t-shirt!!',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
@@ -23,6 +24,7 @@ const reviewSeed = [
     user: '607f092b7624a358d481c971'
   },
   {
+    name: '607f011cc8066878588f6f6c',
     title: 't-shirt too big',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
@@ -32,7 +34,7 @@ const reviewSeed = [
     product:'607f0a715d981599c05cca79',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-    user:'607f092b7624a358d481c972'
+    user:'607f092b7624a358d481c972',
   },
 ];
 

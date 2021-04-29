@@ -19,7 +19,7 @@ const productSeed = [
     imageKey: 'Gray and black t-shirt on a woman',
     description:
       'Heather Grey. Size M. 50% Cotton, 25% Polyester, 25% Rayon. Tumble dry. A must-have comfortable and relaxedfit, super soft blend of cotton/polyester/rayon with short sleeves. Designed and Printed in USA',
-    quantity: 10,
+    storeQuantity: 10,
     price: 24.99,
     taxable: false,
     isActive: true,
@@ -36,7 +36,7 @@ const productSeed = [
     imageKey: 'Pink and white sunglasses',
     description:
       '2 pairs of sunglasses for kids. One white and one pink. Vintage Cat Eye Model Style Retro. Plastic frame and lens. Non-polarized. UV protection coating up to 400UV.',
-    quantity: 500,
+    storeQuantity: 500,
     price: 9.99,
     taxable: false,
     isActive: true,
@@ -51,7 +51,7 @@ const productSeed = [
     imageKey: 'White wooden table by bed',
     description:
       'Minimalist design lead trend of modern simple life style, white round table top with three wooden legs is suit for theme of fast life and modern decoration. Size: 16 x 16 x 27.55 inches. Required assembly.',
-    quantity: 20,
+    storeQuantity: 20,
     price: 34.99,
     taxable: false,
     isActive: true,
@@ -66,7 +66,7 @@ const productSeed = [
     imageKey: 'Gold necklace with pendant',
     description:
       '14K gold chain with sterling silver pendant. Main chain of 17 inches with Satellite chain of 14.5 inches. Pendant of 0.5 inches long.',
-    quantity: 5,
+    storeQuantity: 5,
     price: 64.99,
     taxable: false,
     isActive: true,
@@ -82,7 +82,7 @@ const productSeed = [
     imageKey: 'Red nike sneaker',
     description:
       'Red/Vast Gray size 12 for men. Flywire cables work with the laces for more support as you tighten them. Rounded heel is made to roll with the ground as you stride. Textured toe and heel foam sole sections for traction.',
-    quantity: 10,
+    storeQuantity: 10,
     price: 145,
     taxable: false,
     isActive: true,
@@ -94,11 +94,12 @@ const productSeed = [
     sku: 'sp-backpack-trek1',
     slug: 'sp-backpack',
     name: 'Blackberry backpack',
-    imageUrl: 'https://www.yeti.com/dw/image/v2/BBRN_PRD/on/demandware.static/-/Sites-masterCatalog_Yeti/default/dw296d07f0/images/pdp-Crossroads/795x600/795x600/200642-Bags-CLP-22L-Bkpk-PricklyPearPink-795x600.jpg?sw=720&sfrm=png',
+    imageUrl:
+      'https://www.yeti.com/dw/image/v2/BBRN_PRD/on/demandware.static/-/Sites-masterCatalog_Yeti/default/dw296d07f0/images/pdp-Crossroads/795x600/795x600/200642-Bags-CLP-22L-Bkpk-PricklyPearPink-795x600.jpg?sw=720&sfrm=png',
     imageKey: 'Red Backpack',
     description:
       'High-performance, durable Blackberry backpack. Capacity: 30 liters',
-    quantity: 10,
+    storeQuantity: 10,
     price: 199.99,
     taxable: false,
     isActive: true,
