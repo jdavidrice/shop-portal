@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     alignItems: 'center',
   },
-  flexObject: {
+  flexItem: {
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(4),
   },

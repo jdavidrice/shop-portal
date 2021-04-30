@@ -20,7 +20,7 @@ const Navigation = () => {
   return (
     <div className={classes.root}>
       <AppBar position='fixed'>
-        <Toolbar ariaLabel='navigation' title='Navigation'>
+        <Toolbar aria-label='navigation' title='Navigation'>
           <NavigationDrawer />
 
           <Typography variant='h4' className={classes.title}>
@@ -33,12 +33,12 @@ const Navigation = () => {
           <Link
             style={{ textDecoration: 'none', color: 'inherit' }}
             to='/login'>
-            <IconButton ariaLabel='login' titleAccess='Login' color='inherit'>
+            <IconButton aria-label='login' color='inherit'>
               <AccountIcon />
             </IconButton>
           </Link>
           <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Cart'>
-            <IconButton ariaLabel='cart' titleAccess='Cart' color='inherit'>
+            <IconButton aria-label='cart' color='inherit'>
               <CartIcon />
             </IconButton>
           </Link>

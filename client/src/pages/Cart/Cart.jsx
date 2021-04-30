@@ -15,7 +15,6 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core/';
-// import StickyFooter from '../../components/StickyFooter/StickyFooter';
 import useStyles from './styles';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -169,92 +168,86 @@ const Cart = () => {
                       image={item.product.imageUrl}
                       title={item.product.imageKey}
                     />
-                    <CardContent
-                      className={
-                        (classes.content,
-                        classes.details,
-                        classes.flexContainer)
-                      }>
+                    <CardContent className={classes.flexContainer}>
                       <Typography
-                        className={classes.box}
+                        // className={classes.flexItem}
                         component='h4'
                         variant='h5'>
                         {item.product.name}
                       </Typography>
                       <br />
                       <Typography
-                        className={classes.box}
+                        // className={classes.flexItem}
                         variant='subtitle1'
                         color='textSecondary'>
                         {item.product.description}
                       </Typography>
 
                       {/* Card Footer */}
-                      <CardActions
-                        disableSpacing={true}
-                        className={
-                          (classes.flexContainer, classes.footer, classes.box)
-                        }>
-                        <Box className={classes.box}>
-                          <InputLabel
-                            className={classes.inputLabel}
-                            id='demo-simple-select-outlined-label'>
-                            Quantity
-                          </InputLabel>
-                          <FormControl
-                            variant='outlined'
-                            className={classes.formControl}>
-                            <NativeSelect
-                              name={item.id}
-                              defaultValue={item.storeQuantity}
-                              onChange={(e) => {
-                                handleChange(item._id, e);
-                              }}>
-                              {getOptionsArray(item.product.storeQuantity).map(
-                                (num) => (
+
+                      <CardActions disableSpacing={true}>
+                        <div className={classes.cardFooter}>
+                          <Box className={classes.footerFlexItem}>
+                            <InputLabel
+                              className={classes.inputLabel}
+                              id='demo-simple-select-outlined-label'>
+                              Quantity
+                            </InputLabel>
+                            <FormControl
+                              variant='outlined'
+                              className={classes.formControl}>
+                              <NativeSelect
+                                name={item.id}
+                                defaultValue={item.storeQuantity}
+                                onChange={(e) => {
+                                  handleChange(item._id, e);
+                                }}>
+                                {getOptionsArray(
+                                  item.product.storeQuantity
+                                ).map((num) => (
                                   <option key={num} value={num}>
                                     {' '}
                                     {num}
                                   </option>
-                                )
-                              )}
-                            </NativeSelect>
-                          </FormControl>
-                        </Box>
-                        <Box className={classes.box}>
-                          <IconButton
-                            className={classes.deleteBtn}
-                            aria-label='delete'
-                            onClick={() => {
-                              handleRemove(item._id, GrowTransition);
-                              console.log('remove', item._id); // FOR TESTING
-                            }}>
-                            <DeleteForeverIcon />
-                          </IconButton>
-                        </Box>
-                        <Box className={classes.box}>
-                          <Snackbar
-                            open={state.open}
-                            autoHideDuration={3000}
-                            anchorOrigin={{
-                              vertical: 'top',
-                              horizontal: 'center',
-                            }}
-                            onClose={handleClose}
-                            TransitionComponent={state.Transition}
-                            message='Item removed from your cart'
-                            key={state.Transition.name}
-                          />
-                        </Box>
-                        <Box className={classes.box}>
-                          <Typography
-                            className={classes.totalPrice}
-                            color='textSecondary'
-                            align='right'
-                            variant='h6'>
-                            ${item.totalPrice}
-                          </Typography>
-                        </Box>
+                                ))}
+                              </NativeSelect>
+                            </FormControl>
+                          </Box>
+                          <Box className={classes.footerFlexItem}>
+                            <IconButton
+                              className={classes.deleteBtn}
+                              aria-label='delete'
+                              onClick={() => {
+                                handleRemove(item._id, GrowTransition);
+                                console.log('remove', item._id); // FOR TESTING
+                              }}>
+                              <DeleteForeverIcon />
+                            </IconButton>
+                          </Box>
+                          <Box className={classes.footerFlexItem}>
+                            <Snackbar
+                              open={state.open}
+                              autoHideDuration={3000}
+                              anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                              }}
+                              onClose={handleClose}
+                              TransitionComponent={state.Transition}
+                              message='Item removed from your cart'
+                              key={state.Transition.name}
+                            />
+                          </Box>
+                          <Box className={classes.footerFlexItem}>
+                            <Typography
+                              className={classes.totalPrice}
+                              color='textSecondary'
+                              // align='right'
+                              variant='h6'>
+                              ${item.totalPrice}
+                            </Typography>
+                          </Box>
+                        </div>
                       </CardActions>
                     </CardContent>
                   </Card>
