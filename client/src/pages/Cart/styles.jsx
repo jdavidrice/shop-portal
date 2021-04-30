@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // marginBottom: '1rem',
     marginTop: theme.spacing(2),
   },
-
   checkout: {
     marginTop: theme.spacing(2),
   },
@@ -31,20 +29,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     placeItems: 'center',
     flexFlow: 'column wrap',
-    // padding: theme.spacing(3, 2),
   },
   cardFooter: {
     display: 'flex',
     placeItems: 'center',
     flexFlow: 'row wrap',
-    width: 'inherit',
+    width: theme.spacing(50),
     justifyContent: 'space-between',
-    // padding: theme.spacing(3, 2),
     backgroundColor: theme.palette.background.paper,
-    margin: 0,
-    padding: 0,
-    marginTop: 'auto',
-    height: '5rem',
+    marginTop: theme.spacing(15),
+    height: theme.spacing(5),
   },
 }));
 

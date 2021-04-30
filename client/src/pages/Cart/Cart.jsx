@@ -170,14 +170,14 @@ const Cart = () => {
                     />
                     <CardContent className={classes.flexContainer}>
                       <Typography
-                        // className={classes.flexItem}
+                        className={classes.flexItem}
                         component='h4'
                         variant='h5'>
                         {item.product.name}
                       </Typography>
                       <br />
                       <Typography
-                        // className={classes.flexItem}
+                        className={classes.flexItem}
                         variant='subtitle1'
                         color='textSecondary'>
                         {item.product.description}
@@ -242,7 +242,6 @@ const Cart = () => {
                             <Typography
                               className={classes.totalPrice}
                               color='textSecondary'
-                              // align='right'
                               variant='h6'>
                               ${item.totalPrice}
                             </Typography>
