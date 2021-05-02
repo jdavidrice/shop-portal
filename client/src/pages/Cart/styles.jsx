@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     placeItems: 'center',
     flexFlow: 'row wrap',
-    width: theme.spacing(50),
     justifyContent: 'space-between',
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(15),

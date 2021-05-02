@@ -43,6 +43,13 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  
+
   // For Toast
   const [state, setState] = useState({
     open: false,
@@ -121,7 +128,7 @@ const Cart = () => {
     for (let i = 0; i < list.length; i++) {
       sum = sum + list[i].totalPrice;
     }
-    sum = (Math.round(sum * 100) / 100).toFixed(2);
+    sum = formatter.format(Math.round(sum * 100) / 100);
     return sum;
   }
 
@@ -186,7 +193,7 @@ const Cart = () => {
                       {/* Card Footer */}
 
                       <CardActions disableSpacing={true}>
-                        <div className={classes.cardFooter}>
+                        <div className={classes.cardFooter, classes.flexItem}>
                           <Box className={classes.footerFlexItem}>
                             <InputLabel
                               className={classes.inputLabel}
@@ -267,14 +274,14 @@ const Cart = () => {
               </Typography>
               <Divider variant='middle' />
               <Typography variant='h6' component='p'>
-                Subtotal: ${''}
+                Subtotal: {''}
                 {total}
               </Typography>
               <Typography variant='h6' component='p'>
                 Shipping: $0
               </Typography>
               <Typography variant='h5' component='p'>
-                Total: ${''}
+                Total: {''}
                 {total}
               </Typography>
             </CardContent>
