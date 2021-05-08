@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,10 +9,12 @@ import {
   CardHeader,
   CardActions,
   CardContent,
+  Container,
   Typography,
   Button,
   Card,
 } from '@material-ui/core';
+import Loading from '../../components/Loading/Loading';
 //import { isConstructorDeclaration } from 'typescript';
 
 // ***********To replace with local id until login page and global states done************
@@ -27,6 +30,7 @@ const Shop = () => {
     500: 1,
   };
   const [productsList, setProductsList] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   // Get products from the store
   const getProduct = () => {
@@ -34,6 +38,7 @@ const Shop = () => {
       .get('/api/product')
       .then((res) => {
         setProductsList(res.data);
+        setLoading(false);
       })
       // eslint-disable-next-line
       .catch((err) => console.log(err));
@@ -79,58 +84,66 @@ const Shop = () => {
       .catch((error) => console.log(error));
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <Masonry
-      breakpointCols={breakPoints}
-      className={classes.myMasonryGrid}
-      columnClassName={classes.myMasonryGridColumn}>
-      {productsList
-        ? productsList.map((product, i) => {
-            let price = '$' + product.price; // Add dollar sign to displayed price
-            return (
-              <div key={i} className={classes.myMasonryGridColumnDiv}>
-                <Card>
-                  <CardHeader title={product.name} subheader={price} />
-                  <CardMedia
-                    className={classes.image}
-                    image={product.imageUrl}
-                  />
-                  <CardContent>
-                    <Typography variant='body2' component='p'>
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Link style={{ textDecoration: 'none' }} to='/Cart'>
-                      <Button
-                        size='small'
-                        variant='contained'
-                        color='primary'
-                        onClick={() => {
-                          addProduct(product._id, product.price);
-                        }}>
-                        ADD TO CART
-                      </Button>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} to='/itemDetails'>
-                      <Button
-                        size='small'
-                        variant='contained'
-                        color='primary'
-                        onClick={() => {
-                          // Temp fix until login page and global state
-                          console.log(product._id);
-                        }}>
-                        DETAILS
-                      </Button>
-                    </Link>
-                  </CardActions>
-                </Card>
-              </div>
-            );
-          })
-        : null}
-    </Masonry>
+    <Container className={classes.root} component='main' maxWidth='xs'>
+      <Masonry
+        breakpointCols={breakPoints}
+        className={classes.myMasonryGrid}
+        columnClassName={classes.myMasonryGridColumn}>
+        {productsList
+          ? productsList.map((product, i) => {
+              let price = '$' + product.price; // Add dollar sign to displayed price
+              return (
+                <div key={i} className={classes.myMasonryGridColumnDiv}>
+                  <Card>
+                    <CardHeader title={product.name} subheader={price} />
+                    <CardMedia
+                      className={classes.image}
+                      image={product.imageUrl}
+                    />
+                    <CardContent>
+                      <Typography variant='body2' component='p'>
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Link style={{ textDecoration: 'none' }} to='/Cart'>
+                        <Button
+                          size='small'
+                          variant='contained'
+                          color='primary'
+                          onClick={() => {
+                            addProduct(product._id, product.price);
+                          }}>
+                          ADD TO CART
+                        </Button>
+                      </Link>
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        to='/itemDetails'>
+                        <Button
+                          size='small'
+                          variant='contained'
+                          color='primary'
+                          onClick={() => {
+                            // Temp fix until login page and global state
+                            console.log(product._id);
+                          }}>
+                          DETAILS
+                        </Button>
+                      </Link>
+                    </CardActions>
+                  </Card>
+                </div>
+              );
+            })
+          : null}
+      </Masonry>
+    </Container>
   );
 };
 

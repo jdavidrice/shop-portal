@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -89,7 +90,7 @@ const ItemDetailsPage = () => {
   };
 
   if (isLoading) {
-    return <Loading> Loading...</Loading>;
+    return <Loading />;
   }
 
   return (
@@ -126,9 +127,11 @@ const ItemDetailsPage = () => {
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
-          <AverageRating
-            value={product.averageStars ? product.averageStars : 0}
-          />
+          <Box className={classes.box}>
+            <AverageRating
+              value={product.averageStars ? product.averageStars : 0}
+            />
+          </Box>
 
           <Box className={classes.box}>
             <Typography variant='h6'>${product.price[0]}</Typography>

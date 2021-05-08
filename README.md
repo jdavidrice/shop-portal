@@ -38,7 +38,7 @@ Table of Contents
 
 **Shop Portal** is an open source eCommerce platform powered by the MERN stack. It is designed to allow anyone to host their own online shop with ease.
 
-Whether you are starting an online only business or bringing your brick and mortor shop to the digital world, Shop Portal will help you to easily add and sell products to your online shop.
+Whether you are starting an online only business or bringing your brick and mortar shop to the digital world, Shop Portal will help you easily add and sell products in your online shop.
 
 **Download**
 
@@ -120,13 +120,13 @@ cd shop-portal/
 
 ## Installation Requirements
 
-You will need [NodeJS][nodejs] installed for use with this project.
+You will need [NodeJS][nodejs] installed to use with this project.
 
 You will also need the latest version of [MongoDB][mongodb] installed locally on your machine.
 
 ## Configuration
 
-To configure this application for use, you should create a `.env` file with your database information. For convience, a sample enviroment variable file can be found in the root directory with the name of: `.env.example`.
+To configure this application for use, you should create a `.env` file with your database information. For convenience, a sample environment variable file can be found in the root directory with the name `.env.example`.
 
 ## Usage
 
@@ -142,13 +142,13 @@ npm run init:setup
 
 ### Starting the project
 
-While working and developing on the source code, you can run a live development server (front and backend) with:
+While working on and developing the source code, you can run a live development server (frontend and backend) with:
 
 ```shell
 npm run start:dev:watch
 ```
 
-To start just the backend MonogoDB server and work on the API you can run:
+To start just the backend MonogoDB server and work on the API, you can run:
 
 ```shell
 npm run start:server
@@ -164,15 +164,14 @@ npm run start:client
 
 It is suggested that you format your code with **Prettier** in order to make sure you code looks clean and consistent before you commit and publish it to GitHub. To do this, you can simply run:
 
-> This will format both your backend and frontend code with Prettier
-
 ```shell
 npm run format
 ```
+> This will format both your backend and frontend code with Prettier
 
 ### Linting (ESLint)
 
-Linting is important! You can statically analyzes your code to quickly find problems with **ESLint** by running:
+Linting is important! You can statically analyze your code to quickly find problems with **ESLint** by running:
 
 **Lint check backend code**
 
@@ -196,8 +195,6 @@ npm run lint:check:all
 
 This project supports ESLint autofixing to try and assist you with fixing any issues that ESLint may find in your code. To do this you can simply run:
 
-> Please keep in mind that **_this is not full-proof_**.
-
 **Lint fix backend code**
 
 ```shell
@@ -215,17 +212,17 @@ npm run lint:client:fix
 ```shell
 npm run lint:fix:all
 ```
+> Please keep in mind that this might not catch all issues/errors.
 
 ## Supported Versions
 
 Below is a list of the currently supported versions of this software.
 
-> Note: This project is an ephemeral homework assignment and will not be worked on past its release (due date). Hence the week-long support life cycle.
 
 | Release |       Status       | Initial Release | Active LTS Start | Maintenance LTS Start | End of Life |
 | :-----: | :----------------: | :-------------: | :--------------: | :-------------------: | :---------: |
 | develop |      Unstable      |        -        |        -         |           -           |      -      |
-|   v1    | :heavy_check_mark: |   2021-04-20    |    2021-10-20    |           -           | 2022-04-20  |
+|   v1    | :heavy_check_mark: |   2021-05-20    |    2021-10-20    |           -           | 2022-04-20  |
 |   v2    |   :construction:   |   2022-04-01    |    2022-10-01    |      2023-04-01       | 2024-04-01  |
 
 You can view the Status Key Map and software support model [here][support].

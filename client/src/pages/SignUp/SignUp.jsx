@@ -17,7 +17,7 @@ const SignUp = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -98,7 +98,7 @@ const SignUp = () => {
           </Button>
             <Grid item>
               <Link href="/login" variant="body2">
-                {"Already have an account? Sign in"}
+                {"Already have an account? Sign In"}
               </Link>
             </Grid>
         </form>

@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
   flexContainer: {
     display: "flex",
     placeItems: "center",
-    flexDirection:"row",
-    flexWrap:"wrap",
+    flexFlow:"row wrap",
   },
   box: {
     flexGrow: 1,
