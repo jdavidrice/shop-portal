@@ -1,10 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './styles';
 
 
-const CircularLoader = (theme) => {
+const CircularLoader = () => {
   const classes = useStyles();
 
   return (
